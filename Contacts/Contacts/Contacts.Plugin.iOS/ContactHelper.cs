@@ -104,6 +104,10 @@ namespace Plugin.Contacts
         Type = GetRelationType(p.Label)
       }).ToList();
 
+      var imageData = person.GetImage(ABPersonImageFormat.Thumbnail);
+            contact.HasImage = imageData != null;
+            contact.ImageStream = () => 
+                imageData.AsStream ();
       return contact;
     }
 

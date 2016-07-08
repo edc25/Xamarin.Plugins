@@ -33,6 +33,7 @@ using WebsiteData = Android.Provider.ContactsContract.CommonDataKinds.Website;
 using Relation = Android.Provider.ContactsContract.CommonDataKinds.Relation;
 using Plugin.Contacts.Abstractions;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Plugin.Contacts
 {
@@ -266,6 +267,12 @@ namespace Plugin.Contacts
         case Relation.ContentItemType:
           contact.Relationships.Add(GetRelationship(c, resources));
           break;
+        
+        case ContactsContract.CommonDataKinds.Photo.ContentItemType:
+                var blob = c.GetBlob (c.GetColumnIndex (ContactsContract.CommonDataKinds.Photo.PhotoColumnId));
+                contact.HasImage = blob != null;
+                contact.ImageStream = () => new MemoryStream (blob);
+                break;
       }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +79,10 @@ namespace Plugin.Contacts.Abstractions
       get;
       set;
     }
+
+        public bool HasImage { get; set; }
+
+        public Func<Stream> ImageStream { get; set; }
 
     internal List<Relationship> relationships = new List<Relationship>();
     public List<Relationship> Relationships
