@@ -269,6 +269,7 @@ namespace Plugin.Contacts
           break;
         
         case ContactsContract.CommonDataKinds.Photo.ContentItemType:
+				break;
                 var blob = c.GetBlob (c.GetColumnIndex (ContactsContract.CommonDataKinds.Photo.PhotoColumnId));
                 contact.HasImage = blob != null;
                 contact.ImageStream = () => new MemoryStream (blob);

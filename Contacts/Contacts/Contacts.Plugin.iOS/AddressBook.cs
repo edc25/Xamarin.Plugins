@@ -40,6 +40,13 @@ namespace Plugin.Contacts
       this.provider = new ContactQueryProvider(this.addressBook);
     }
 
+    public bool IsPermissionSet ()
+    {
+        var status = ABAddressBook.GetAuthorizationStatus ();
+        return status != ABAuthorizationStatus.NotDetermined;
+    }
+
+
     public Task<bool> RequestPermission()
     {
       var tcs = new TaskCompletionSource<bool>();

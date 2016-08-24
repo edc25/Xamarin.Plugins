@@ -9,7 +9,8 @@ namespace Plugin.Contacts.Abstractions
   /// </summary>
   public interface IContacts
   {
-    Task<bool> RequestPermission();
+        Task<bool> RequestPermission ();
+        Task<bool> IsPermissionSet ();
     IQueryable<Contact> Contacts { get; }
     Contact LoadContact(string id);
 

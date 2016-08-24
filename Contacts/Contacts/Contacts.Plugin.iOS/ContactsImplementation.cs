@@ -25,7 +25,15 @@ namespace Plugin.Contacts
 
     public Task<bool> RequestPermission()
     {
+            
       return AddressBook.RequestPermission();
+    }
+
+    public Task<bool> IsPermissionSet ()
+    {
+            var tcs = new TaskCompletionSource<bool> ();
+            tcs.SetResult (AddressBook.IsPermissionSet ());
+            return tcs.Task;
     }
 
     public IQueryable<Contact> Contacts

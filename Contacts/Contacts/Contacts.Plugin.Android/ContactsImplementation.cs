@@ -14,6 +14,13 @@ namespace Plugin.Contacts
   /// </summary>
   public class ContactsImplementation : IContacts
   {
+
+        public async Task<bool> IsPermissionSet ()
+        {
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync (Permissions.Abstractions.Permission.Contacts).ConfigureAwait (false);
+            return status != Permissions.Abstractions.PermissionStatus.Unknown;
+        }
+
     public async Task<bool> RequestPermission()
     {
         var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permissions.Abstractions.Permission.Contacts).ConfigureAwait(false);
